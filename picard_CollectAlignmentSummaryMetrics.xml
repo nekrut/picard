@@ -78,6 +78,10 @@
     <data format="tabular" name="outFile"/>
   </outputs>
   
+  <stdio>
+    <exit_code range="1:"  level="fatal"/>
+  </stdio>
+  
   
   <tests>
     <test>

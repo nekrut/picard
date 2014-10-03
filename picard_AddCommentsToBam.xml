@@ -28,10 +28,15 @@
     <expand macro="VS" />
 
   </inputs>
+
   <outputs>
-    <data name="outFile" format="bam">
-    </data>
+    <data name="outFile" format="bam" />
   </outputs>
+  
+  <stdio>
+    <exit_code range="1:"  level="fatal"/>
+  </stdio>
+  
   <tests>
   <test>
       <param name="inputFile" value="picard_AddCommentsToBam.bam" />

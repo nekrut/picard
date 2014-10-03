@@ -59,12 +59,18 @@
     <expand macro="VS" />
     
   </inputs>
+  
   <outputs>
     <data name="outFile" format="bam">
     </data>
   </outputs>
+  
+  <stdio>
+    <exit_code range="1:"  level="fatal"/>
+  </stdio>
+  
   <tests>
-  <test>
+    <test>
       <param name="inputFile" value="picard_ARRG.bam" />
       <param name="rglb" value="tumor-a" />
       <param name="rgpl" value="Illumina" />

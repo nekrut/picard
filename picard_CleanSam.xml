@@ -35,8 +35,8 @@
   </outputs>
   
   <stdio>
-    <regex match="Finished" source="stderr" level="warning" description="all good" />    
-  </stdio>  
+    <exit_code range="1:"  level="fatal"/>
+  </stdio>
   
   <tests>
     <test>
