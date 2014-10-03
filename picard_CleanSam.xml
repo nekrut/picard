@@ -1,0 +1,62 @@
+<tool id="picard_CleanSam" name="CleanSam" version="1.121.0">
+    
+  <description>perform SAM/BAM grooming</description>
+  
+  <requirements>
+    <requirement type="package" version="1.121.0">picard</requirement>
+  </requirements>
+  
+  <macros>
+    <import>picard_macros.xml</import>
+  </macros>
+  
+  <command>
+    ##_JAVA_OPTIONS=\${_JAVA_OPTIONS:-'-Xmx2048m -Xms256m'} &amp;&amp;
+    ##export _JAVA_OPTIONS &amp;&amp;
+    @java_options@
+    java -jar \$JAVA_JAR_PATH/CleanSam.jar
+    INPUT="${inputFile}"
+    OUTPUT="${outFile}"
+    QUIET=true
+    VERBOSITY=ERROR
+    VALIDATION_STRINGENCY=${validation_stringency}
+  </command>
+  
+  <inputs>
+    <param name="inputFile" type="data" format="sam,bam" label="Select SAM or BAM dataset to clean" help="If empty, upload or import a SAM/BAM dataset."/>
+    
+    <expand macro="VS" />
+    
+  </inputs>
+  
+  <outputs>
+    <data name="outFile" format="bam" label="${tool.name} on ${on_string}: cleaned BAM dataset">
+    </data>
+  </outputs>
+  
+  <stdio>
+    <regex match="Finished" source="stderr" level="warning" description="all good" />    
+  </stdio>  
+  
+  <tests>
+    <test>
+      <param name="inputFile" ftype="bam" value="picard_CleanSam.bam" />
+      <output name="outFile" file="picard_CleanSam_test1.bam" ftype="bam" />
+    </test>
+  </tests>
+  
+  <help>
+
+.. class:: infomark
+
+**Purpose**
+
+Read SAM/BAM and perform various fix-ups. Currently, the only fix-ups are:
+
+ 1. to soft-clip an alignment that hangs off the end of its reference sequence.
+ 2. to set MAPQ to 0 if a read is unmapped.
+ 
+ @more_info@
+
+  </help>
+</tool>

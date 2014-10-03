@@ -1,0 +1,39 @@
+<macros>
+    <xml name="VS">
+        <param name="validation_stringency" type="select" label="Select validation stringency" help=" Setting stringency to SILENT can improve performance when processing a BAM file in which variable-length data (read, qualities, tags) do not otherwise need to be decoded.">
+          <option value="LENIENT" selected="True">Lenient</option>
+          <option value="SILENT">Silent</option>
+          <option value="STRICT">Strict</option>
+        </param>
+    </xml>
+    
+    <token name="@java_options@">
+    _JAVA_OPTIONS=\${_JAVA_OPTIONS:-'-Xmx2048m -Xms256m'} &amp;&amp;
+    export _JAVA_OPTIONS &amp;&amp;
+    </token>
+    
+    <token name="@more_info@">
+------
+
+.. class:: infomark
+
+**Additional information**
+
+Additional information about Picard tools is available from Picard web site at http://broadinstitute.github.io/picard/.
+    </token>
+    
+
+    <token name="@description@">
+------
+
+.. class:: infomark
+
+**Inputs, outputs, and parameters**
+
+Either a SAM file or a BAM file must be supplied. Galaxy automatically coordinate-sorts all uploaded BAM files.
+
+From Picard documentation( http://broadinstitute.github.io/picard/)::
+
+    </token>
+
+</macros>
