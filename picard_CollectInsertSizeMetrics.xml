@@ -1,5 +1,5 @@
 <tool name="CollectInsertSizeMetrics" id="picard_CollectInsertSizeMetrics" version="1.121.0">
-  <description>charts the GC bias metrics</description>
+  <description>plots distribution of insert sizes</description>
   <requirements>
     <requirement type="package" version="1.121.0">picard</requirement>
   </requirements>

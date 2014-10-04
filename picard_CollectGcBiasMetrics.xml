@@ -57,28 +57,29 @@
     <param name="window_size" type="integer" value="100" label="The size of windows on the genome that are used to bin reads" help="WINDOW_SIZE; default=100"/>
     <param name="minimum_genome_fraction" type="float" value="0.00005" label="For summary metrics, exclude GC windows that include less than this fraction of the genome" help="MINIMUM_GENOME_FRACTION; default=0.0005"/>
     <param name="is_bisulfite_sequenced" type="boolean" label="Calculate the base distribution over PF (passing filtering) reads only" checked="true" truevalue="true" falsevalue="false" help="PF_READS_ONLY"/> 
-    <param name="assume_sorted" type="boolean" label="Assume the input file is already sorted" checked="true" truevalue="true" falsevalue="false" help="ASSUME_SORTED"/> 
+    <param name="assume_sorted" type="boolean" label="Assume the input file is already sorted" checked="true" truevalue="true" falsevalue="false" help="ASSUME_SORTED"/>
     
     <expand macro="VS" />
     
   </inputs>
   
   <outputs>
-    <data fomat="txt" name="summaryFile"/>
+    <data format="tabular" name="summaryFile"/>
     <data format="tabular" name="outFile"/>
     <data format="pdf" name="pdfFile"/>
   </outputs>
   
   <tests>
-<!--    <test>
-      <param name="aligned_reads_only" value="true" />
-      <param name="pf_reads_only" value="true" />
+    <test>
+      <param name="window_size" value="100" />
+      <param name="minimum_genome_fraction" value="0.00005" />
       <param name="assume_sorted" value="true" />
+      <param name="is_bisulfite_sequenced" value="true" />
       <param name="reference_source_selector" value="history" />
-      <param name="ref_file" value="picard_CollectBaseDistributionByCycle_ref.fa" />
-      <param name="inputFile" value="picard_CollectBaseDistributionByCycle.bam" ftype="bam" />
-      <output name="outFile" file="picard_CollectBaseDistributionByCycle_test1.tab" ftype="tabular" lines_diff="4"/>
-    </test> -->
+      <param name="ref_file" value="picard_CollectGcBiasMetrics_ref.fa" />
+      <param name="inputFile" value="picard_CollectGcBiasMetrics.bam" ftype="bam" />
+      <output name="outFile" file="picard_CollectGcBiasMetrics_test1.tab" ftype="tabular" lines_diff="4"/>
+    </test> 
   </tests>
   
   <stdio>
