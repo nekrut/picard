@@ -33,7 +33,7 @@
     REFERENCE_SEQUENCE="${reference_fasta_filename}"
     
     ASSUME_SORTED="${sorted}"
-    ##STOP_AFTER="${}
+
     VALIDATION_STRINGENCY="${validation_stringency}"
     QUIET=true
     VERBOSITY=ERROR
