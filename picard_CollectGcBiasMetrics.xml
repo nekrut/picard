@@ -64,9 +64,9 @@
   </inputs>
   
   <outputs>
-    <data format="tabular" name="summaryFile"/>
-    <data format="tabular" name="outFile"/>
-    <data format="pdf" name="pdfFile"/>
+    <data format="tabular" name="summaryFile" label="${tool.name} on ${on_string}: Summary stats"/>
+    <data format="tabular" name="outFile" label="${tool.name} on ${on_string}: Summary data"/>
+    <data format="pdf" name="pdfFile" label="${tool.name} on ${on_string}: Chart PDF"/>
   </outputs>
   
   <tests>

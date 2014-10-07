@@ -7,7 +7,7 @@
   </macros>
   
   <command>
-    
+    @java_options@
     #set $picard_dict = "localref.dict"
     #set $ref_fasta = "localref.fa"     ## This is done because picards "likes" .fa extension
     
