@@ -15,8 +15,6 @@
     <token name="@more_info@">
 ------
 
-.. class:: infomark
-
 **Additional information**
 
 Additional information about Picard tools is available from Picard web site at http://broadinstitute.github.io/picard/.
@@ -25,8 +23,6 @@ Additional information about Picard tools is available from Picard web site at h
 
     <token name="@description@">
 ------
-
-.. class:: infomark
 
 **Inputs, outputs, and parameters**
 
