@@ -86,7 +86,7 @@
         <param name="fastq2" type="data" format="fastq" label="Input fastq file for the second read of paired end data" help="FASTQ2"/>
       </when>
       <when value="pc">
-        <param name="fastq" type="data_collection" collection_type="paired" label="FASTQ paired dataset collection" help="A collection of two datasets with forward and reverse reads. See help below on explanation of dataset collections"/>
+        <param name="fastq" type="data_collection" collection_type="paired" label="FASTQ paired dataset collection" help="FASTQ and FASTQ2; A collection of two datasets with forward and reverse reads. See help below on explanation of dataset collections"/>
       </when>
     </conditional>
       
@@ -103,7 +103,7 @@
     <param name="platform" type="text" size="20" optional="True"  label="The platform type (e.g. illumina, 454)" help="PLATFORM; Optional"/>
     <param name="sequencing_center" type="text" size="20" optional="True"  label="The sequencing center from which the data originated" help="SEQUENCING_CENTER; Optional"/>
 
-    <param name="predicted_insert_size" type="integer" min="0" max="100000" optional="True" label="Predicted median insert size, to insert into the read group header " help="PREDICTED_INSERT_SIZE; Optional"/>
+    <param name="predicted_insert_size" type="integer" min="0" max="100000" optional="True" label="Predicted median insert size, to insert into the read group header" help="PREDICTED_INSERT_SIZE; Optional"/>
     <param name="comment" type="text" size="20" optional="True" label="Comment to include in the output dataset's header" help="COMMENT; Optional"/>
     <param name="description" type="text" size="20" optional="True" label="Optional description information" help="DESCRIPTION; Optional"/>
     <param name="run_date" optional="True" type="text" label="Run date" help="RGDT; Optional; Format=YYYY-MM-DD (eg 1997-07-16)"/>
@@ -122,13 +122,26 @@
   
   <tests>
     <test>
-      <param name="reference_source_selector" value="history" />
-      <param name="minimum_mapping_quality" value="20" />
-      <param name="minimum_base_quality" value="20" />
-      <param name="coverage_cap" value="250" />
-      <param name="ref_file" value="picard_CollectWgsMetrics_ref.fa" />
-      <param name="inputFile" value="picard_CollectWgsMetrics.bam" ftype="bam" />
-      <output name="outFile" file="picard_CollectWgsMetrics_test1.tab" ftype="tabular" lines_diff="4"/>
+      <param name="input_type_selector" value="pe" />
+      <param name="quality_format" value="Standard" />
+      <param name="read_group_name" value="A" />
+      <param name="sample_name" value="sample-a" />
+      <param name="library_name" value="A"/>
+      <param name="platform_unit" value="A"/>
+      <param name="platform" value="Illumina"/>
+      <param name="sequencing_center" value="A"/>
+      <param name="predicted_insert_size" value="300"/>
+      <param name="comment" value="A"/>
+      <param name="description" value="A"/>
+      <param name="run_date" value="2014-10-10"/>
+      <param name="min_q" value="0" />
+      <param name="max_q" value="93" />
+      <param name="strip_unpairied_mate_number" value="False" />
+      <param name="allow_and_ignore_empty_lines" value="False" />
+      <param name="validation_stringency" value="LENIENT"/>
+      <param name="fastq" value="picard_FastqToSam_read1.fq" ftype="fastq" />
+      <param name="fastq2" value="picard_FastqToSam_read2.fq" ftype="fastq" />
+      <output name="outFile" file="picard_FastqToSam_test1.bam" ftype="bam" lines_diff="4"/>
     </test> 
   </tests>
   
@@ -155,8 +168,7 @@ Computes a number of metrics that are useful for evaluating coverage and perform
                                 data.  Required.
                                 
   FASTQ2=File
-  F2=File                       Input fastq file for the second read of paired end data.  Default 
-                                value: null. 
+  F2=File                       Input fastq file for the second read of paired end data (if used).  
 
   QUALITY_FORMAT=FastqQualityFormat
   V=FastqQualityFormat          A value describing how the quality values are encoded in the fastq.  Either Solexa for 
