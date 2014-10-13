@@ -23,8 +23,7 @@
     REMOVE_DUPLICATES="${remove_duplicates}"
     ASSUME_SORTED="${assume_sorted}"
     
-    ##DUPLICATE_SCORING_STRATEGY="${duplicate_scoring_strategy}"
-    ## The above option is specified in docs, but not enabled in Picard
+    DUPLICATE_SCORING_STRATEGY="${duplicate_scoring_strategy}"
     
     READ_NAME_REGEX="${read_name_regex}"
     OPTICAL_DUPLICATE_PIXEL_DISTANCE="${optical_duplicate_pixel_distance}"
@@ -42,12 +41,11 @@
     <param name="remove_duplicates" type="boolean" label="If true do not write duplicates to the output file instead of writing them with appropriate flags set" help="REMOVE_DUPLICATES; default=False"/>
     <param name="assume_sorted" type="boolean" label="Assume the input file is already sorted" checked="true" truevalue="true" falsevalue="false" help="ASSUME_SORTED; default=True"/>
 
-<!-- The parame below refers to an option that is specified in docs, but not enabled in the current version of Picard
     <param name="duplicate_scoring_strategy" type="select" label="The scoring strategy for choosing the non-duplicate among candidates" help="DUPLICATE_SCORING_STRATEGY; default=SUM_OF_BASE_QUALITIES">
       <option value="SUM_OF_BASE_QUALITIES">SUM_OF_BASE_QUALITIES</option>
       <option value="TOTAL_MAPPED_REFERENCE_LENGTH">TOTAL_MAPPED_REFERENCE_LENGTH</option>
     </param>
--->
+
 
     <param name="read_name_regex" type="text" size="40" value="[a-zA-Z0-9]+:[0-9]:([0-9]+):([0-9]+):([0-9]+).*." label="Regular expression that can be used to parse read names in the incoming SAM/BAM dataset" help="READ_NAME_REGEX; Read names are parsed to extract three variables: tile/region, x coordinate and y coordinate. These values are used to estimate the rate of optical duplication in order to give a more accurate estimated library size. See help below for more info; default=[a-zA-Z0-9]+:[0-9]:([0-9]+):([0-9]+):([0-9]+).*.">
       <sanitizer>
@@ -74,7 +72,7 @@
       <param name="remove_duplicates" value="True"/>
       <param name="read_name_regex" value="[a-zA-Z0-9]+:[0-9]:([0-9]+):([0-9]+):([0-9]+).*."/>
       <param name="optical_duplicate_pixel_distance" value="100"/>
-      
+      <param name="duplicate_scoring_strategy" value="SUM_OF_BASE_QUALITIES"/>
       <param name="validation_stringency" value="LENIENT"/>
       <output name="outFile" file="picard_MarkDuplicates_test1.bam" ftype="bam" lines_diff="2"/>
     </test>
@@ -111,7 +109,11 @@ Examines aligned records in the supplied SAM or BAM dataset to locate duplicate 
                                 colon character. For 5 element names, the 3rd, 4th and 5th elements are assumed to be 
                                 tile, x and y values. For 7 element names (CASAVA 1.8), the 5th, 6th, and 7th elements 
                                 are assumed to be tile, x and y values.  Default value: 
-                                [a-zA-Z0-9]+:[0-9]:([0-9]+):([0-9]+):([0-9]+).*. 
+                                [a-zA-Z0-9]+:[0-9]:([0-9]+):([0-9]+):([0-9]+).*.
+                                
+  DUPLICATE_SCORING_STRATEGY=ScoringStrategy
+  DS=ScoringStrategy            The scoring strategy for choosing the non-duplicate among candidates.  Default value: 
+                                SUM_OF_BASE_QUALITIES. Possible values: {SUM_OF_BASE_QUALITIES, TOTAL_MAPPED_REFERENCE_LENGTH} 
   
   OPTICAL_DUPLICATE_PIXEL_DISTANCE=Integer
                                 The maximum offset between two duplicte clusters in order to consider them optical 
