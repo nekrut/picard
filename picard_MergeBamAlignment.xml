@@ -76,6 +76,8 @@
       INCLUDE_SECONDARY_ALIGNMENTS="${include_secondary_alignments}"
       ADD_MATE_CIGAR="${add_mate_cigar}"
       
+      VALIDATION_STRINGENCY="${validation_stringency}"
+
       SORT_ORDER=coordinate
       QUIET=true
       VERBOSITY=ERROR
@@ -166,7 +168,7 @@
     <param name="clip_overlapping_reads" type="boolean" checked="True" label="For paired reads, soft clip the 3' end of each read if necessary so that it does not extend past the 5' end of its mate" help="CLIP_OVERLAPPING_READS; default=True"/>
     <param name="include_secondary_alignments" type="boolean" checked="True" label="If false, do not write secondary alignments to output" help="INCLUDE_SECONDARY_ALIGNMENTS; default=True"/>
     <param name="add_mate_cigar" type="boolean" checked="True" label="Adds the mate CIGAR tag (MC) if true, does not if false" help="ADD_MATE_CIGAR; default=True"/>
-    
+    <expand macro="VS" />
   </inputs>
   <outputs>
     <data name="outFile" format="bam" label="${tool.name} on ${on_string}: BAM with merged alignments"/>
