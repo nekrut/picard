@@ -14,10 +14,9 @@
     java -jar \$JAVA_JAR_PATH/MergeSamFiles.jar
     
     #for $element in $inputFile:
-      INPUT=$element
+      INPUT="${element}"
     #end for
     
-    ##INPUT="${inputFile}"
     OUTPUT="${outFile}"
     MERGE_SEQUENCE_DICTIONARIES="${merge_sequence_dictionaries}"
     
