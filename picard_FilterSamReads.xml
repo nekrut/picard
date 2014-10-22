@@ -1,7 +1,7 @@
-<tool name="FilterSamReads" id="picard_FilterSamReads" version="1.121.0">
+<tool name="FilterSamReads" id="picard_FilterSamReads" version="1.122.0">
   <description>include or exclude aligned and unaligned reads and read lists</description>
   <requirements>
-    <requirement type="package" version="1.121.0">picard</requirement>
+    <requirement type="package" version="1.122.0">picard</requirement>
   </requirements>
   
   <macros>
@@ -11,7 +11,7 @@
   <command>
     @java_options@
     
-    ##Sam Sorting is performed here because FilterSamReads requires input to be in quary-sorted order
+    ##Sam Sorting is performed here because FilterSamReads requires input to be in query-sorted order
     
     java -jar \$JAVA_JAR_PATH/SortSam.jar
     INPUT="${inputFile}"
@@ -39,7 +39,7 @@
   
   </command>
   <inputs>
-    <param name="inputFile" multiple="True" type="data" format="sam,bam" label="Select BAM dataset or a dataset collection" help="INPUT"/>
+    <param name="inputFile" multiple="True" type="data" format="sam,bam" label="Select SAM/BAM dataset or dataset collection" help="If empty, upload or import a SAM/BAM dataset"/>
     <conditional name="filter_type">
       <param name="filter" type="select" label="Select filtering type" help="FILTER; see Help for deatiled info">
         <option value="includeAligned">Include aligned</option>

@@ -56,7 +56,7 @@
   </command>
   <inputs>
     
-    <param format="sam,bam" name="inputFile" type="data" label="SAM/BAM dataset or dataset collection" help="If empty, upload or import a SAM/BAM dataset." />
+    <param format="sam,bam" name="inputFile" type="data" label="Select SAM/BAM dataset or dataset collection" help="If empty, upload or import a SAM/BAM dataset"/>
     <param name="output_per_rg" type="boolean" checked="False" label="Do you want to output a fastq file per read group (two fastq files per read group if the group is paired)" help="OUTPUT_PER_RG; default=False"/>
     <param name="re_reverse" type="boolean" checked="True" label="Re-reverse bases and qualities of reads with negative strand flag set before writing them to fastq" help="RE_REVERSE; default=True"/>
     <param name="interleave" type="boolean" label="Will generate an interleaved fastq if paired, each line will have /1 or /2 to describe which end it came from" help="INTERLEAVE; default=False"/>

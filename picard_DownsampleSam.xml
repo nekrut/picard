@@ -1,8 +1,7 @@
-<tool name="Downsample SAM/BAM" id="picard_DownsampleSam" version="1.121.0">
-  <!-- found on https://bitbucket.org/bwlang/galaxy-dist/src/ca5ded2e18a9ef802c31429e3cb861e8775b24d0/tools/picard/picard_DownsampleSam.xml -->
-  <description>Down-sample a file to retain a subset of the reads</description>
+<tool name="Downsample SAM/BAM" id="picard_DownsampleSam" version="1.122.0">
+  <description>Downsample a file to retain a subset of the reads</description>
   <requirements>
-    <requirement type="package" version="1.121.0">picard</requirement>
+    <requirement type="package" version="1.122.0">picard</requirement>
   </requirements>
    
   <macros>
@@ -22,10 +21,9 @@
       VALIDATION_STRINGENCY=${validation_stringency}
   </command>
   <inputs>
-    <param format="sam,bam" name="inputFile" type="data" label="SAM/BAM dataset to be downsampled"
-           help="If empty, upload or import a SAM or BAM dataset." />
-    <param name="probability" type="float" size="5" label="Probability (between 0 and 1) that any given read will be kept" help="specify 1 to keep all reads, 0.1 to keep 10% of the reads" value="1" />
-    <param name="seed" type="integer" size="5" label="Random seed value" help="(same seed + same probability = same set of reads kept)" value="1" />
+    <param format="sam,bam" name="inputFile" type="data" label="Select SAM/BAM dataset or dataset collection" help="If empty, upload or import a SAM or BAM dataset" />
+    <param name="probability" type="float" size="4" min="0.0" max="1.0" label="Probability (between 0 and 1) that any given read will be kept" help="PROBABILITY; specify 1 to keep all reads, 0.1 to keep 10% of the reads" value="1" />
+    <param name="seed" type="integer" size="5" label="Random seed value" help="RANDOM_SEED; default=1" value="1" />
     
     <expand macro="VS" />
     
@@ -55,6 +53,8 @@
 **Purpose**
 
 Randomly down-sample a SAM or BAM file to retain a random subset of the reads. Mate-pairs are either both kept or both discarded. Reads marked as not primary alignments are all discarded. Each read is given a probability P of being retained - results with the exact same input in the same order and with the same value for RANDOM_SEED will produce the same results.
+
+@dataset_collections@
 
 @description@
 

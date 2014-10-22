@@ -1,6 +1,6 @@
-<tool name="BedToIntervalList" id="picard_BedToIntervalList" version="1.121.0">
-  <description>converts coordinate data into picard interval format</description>
-  <requirements><requirement type="package" version="1.121.0">picard</requirement></requirements>
+<tool name="BedToIntervalList" id="picard_BedToIntervalList" version="1.122.0">
+  <description>convert coordinate data into picard interval list format</description>
+  <requirements><requirement type="package" version="1.122.0">picard</requirement></requirements>
   
   <macros>
     <import>picard_macros.xml</import>
@@ -8,6 +8,7 @@
   
   <command>
     @java_options@
+    
     #set $picard_dict = "localref.dict"
     #set $ref_fasta = "localref.fa"     ## This is done because picards "likes" .fa extension
     
@@ -23,13 +24,15 @@
       
     #else:
     
-      #set $reference_fasta_filename = str( $reference_source.ref_file.fields.path )
+      #set $ref_fasta = str( $reference_source.ref_file.fields.path ) ## getting path of reference fasta file (must end with .fa)
+      #set $picard_dict=$ref_fasta[:-2]+"dict"                        ## replacing .fa with .dict
     
-    #end if
+    #end if 
     
     java -jar \$JAVA_JAR_PATH/BedToIntervalList.jar
       INPUT="${inputFile}"
       OUTPUT="${outFile}"
+      
       SEQUENCE_DICTIONARY="${picard_dict}"
       QUIET=true
       VERBOSITY=ERROR
@@ -57,11 +60,11 @@
       </when>
     </conditional>
     
-    <param format="bed" name="inputFile" type="data" label="Coordinate dataset to convert" help="INPUT; This can be a bed or interval dataset" />
+    <param format="bed" name="inputFile" type="data" label="Select coordinate dataset or dataset collection" help="This can be a bed or interval dataset" />
 
   </inputs>
   <outputs>
-    <data name="outFile" format="picard_interval_list">
+    <data name="outFile" format="picard_interval_list" label="${tool.name} on ${on_string}: Picard interval list">
     </data>
   </outputs>
   <tests>
@@ -72,6 +75,11 @@
       <output name="outFile" file="picard_BedToIntervalList_test1.pif" ftype="picard_interval_list" lines_diff="2" />
     </test>
   </tests>
+  
+  <stdio>
+    <exit_code range="1:"  level="fatal"/>
+  </stdio>
+  
   <help>
 
 .. class:: infomark
@@ -79,6 +87,8 @@
 **Purpose**
 
 Convert coordinate data (such as BED or Galaxy Interval) into Picard Interval Format.
+
+@dataset_collections@
 
 @description@
 

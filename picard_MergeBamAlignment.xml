@@ -1,5 +1,5 @@
 <tool name="MergeBamAlignment" id="picard_MergeBamAlignment" version="1.122.0">
-  <description>merge alignment data from a SAM or BAM dataset with additional data stored in an unmapped BAM dataset</description>
+  <description>merge alignment data with additional info stored in an unmapped BAM dataset</description>
   <requirements><requirement type="package" version="1.122.0">picard</requirement></requirements>
   
   <macros>
@@ -67,9 +67,13 @@
     
       READ1_TRIM="${read1_trim}"
       READ2_TRIM="${read2_trim}"
-      #for $instance in $expected_orientation:
-        EXPECTED_ORIENTATIONS="${instance.orientation}"
-      #end for
+      
+      #if str( $orientations ) != "None":
+        #for $orientation in str( $orientations ).split(','):   ## See trello card https://trello.com/c/9nW02Zhd
+          EXPECTED_ORIENTATIONS="${orientation}"
+        #end for
+      #end if
+      
       ALIGNER_PROPER_PAIR_FLAGS="${aligner_proper_pair_flags}"      
       PRIMARY_ALIGNMENT_STRATEGY="${primary_alignment_strategy}"
       CLIP_OVERLAPPING_READS="${clip_overlapping_reads}"
@@ -148,13 +152,12 @@
     <param name="read1_trim" type="integer" value="0" label="The number of bases trimmed from the beginning of read 1 prior to alignment" help="READ1_TRIM; default=0"/>
     <param name="read2_trim" type="integer" value="0" label="The number of bases trimmed from the beginning of read 2 prior to alignment" help="READ2_TRIM; default=0"/>
     
-    <repeat name="expected_orientation" title="Specify read orintation" min="0" help="You can provide multiple orientations">
-      <param name="orientation" type="select" label="The expected orientation of proper read pairs" help="EXPECTED_ORIENTATIONS">
-        <option value="FR">Forward/Reverse (FR)</option>
-        <option value="RF">Reverse/Forward (RF)</option>
-        <option value="TANDEM">Tandem</option>
-      </param>
-    </repeat>
+    <param name="orientations" type="select" multiple="True" display="checkboxes" label="The expected orientation of proper read pairs" help="EXPECTED_ORIENTATIONS; multiple orinetations can be selected">
+      <option value="FR">Forward/Reverse (FR)</option>
+      <option value="RF">Reverse/Forward (RF)</option>
+      <option value="TANDEM">Tandem</option>
+    </param>
+ 
     
     <param name="aligner_proper_pair_flags" type="boolean" label="Use the aligner's idea of what a proper pair is rather than computing in this program" help="ALIGNER_PROPER_PAIR_FLAGS; default=False"/>
     

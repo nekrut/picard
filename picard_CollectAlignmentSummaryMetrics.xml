@@ -1,7 +1,7 @@
-<tool name="SAM/BAM Alignment Summary Metrics" id="picard_CASM" version="1.121.0">
+<tool name="Collect Alignment Summary Metrics" id="picard_CASM" version="1.122.0">
   <description>writes a file containing summary alignment metrics</description>
   <requirements>
-    <requirement type="package" version="1.106.0">picard</requirement>
+    <requirement type="package" version="1.122.0">picard</requirement>
   </requirements>
   
   <macros>
@@ -40,7 +40,7 @@
   
   </command>
   <inputs>
-    <param format="sam,bam" name="inputFile" type="data" label="SAM/BAM dataset to generate statistics for" help="If empty, upload or import a SAM/BAM dataset."/>
+    <param format="sam,bam" name="inputFile" type="data" label="Select SAM/BAM dataset or dataset collection" help="If empty, upload or import a SAM/BAM dataset."/>
     <conditional name="reference_source">
       <param name="reference_source_selector" type="select" label="Load reference genome from">
         <option value="cached">Local cache</option>
@@ -65,7 +65,7 @@
     </param>
     <param name="assume_sorted" type="boolean" label="Assume the input file is already sorted" checked="true" truevalue="true" falsevalue="false" help="ASSUME_SORTED"/>
     <param name="bisulphite" type="boolean" label="Input file contains Bisulphite sequenced reads" checked="false" falsevalue="false" truevalue="true" help="IS_BISULFITE_SEQUENCED"/>
-    <repeat name="adapters" title="Adapter(s)" min="0" help="You can provide multiple adaptor sequences">
+    <repeat name="adapters" title="Adapter" min="0" help="You can provide multiple adaptor sequences">
           <param name="adapter" type="text" size="50" label="Use this adaptor sequence" help="ADAPTER_SEQUENCE"/>
     </repeat>
     <param name="maxinsert" value="100000" type="integer" label="Larger paired end reads and inter-chromosomal pairs considered chimeric" size="20" help="MAX_INSERT_SIZE"/>
@@ -103,6 +103,8 @@
 **Purpose**
 
 Reads a SAM or BAM file and writes a file containing summary alignment metrics.
+
+@dataset_collections@
 
 @description@
 

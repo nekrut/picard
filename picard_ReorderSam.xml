@@ -1,5 +1,5 @@
 <tool name="ReorderSam" id="picard_ReorderSam" version="1.122.0">
-  <description>reorder reads in a SAM/BAM file to match the contig ordering in a reference</description>
+  <description>reorder reads to match ordering in reference sequences</description>
   <requirements><requirement type="package" version="1.122.0">picard</requirement></requirements>
   
   <macros>
@@ -61,7 +61,7 @@
       </when>
     </conditional>
 
-    <param format="sam,bam" name="inputFile" type="data" label="SAM/BAM dataset or dataset collection" help="If empty, upload or import a SAM/BAM dataset."/>
+    <param format="sam,bam" name="inputFile" type="data" label="Select SAM/BAM dataset or dataset collection" help="If empty, upload or import a SAM/BAM dataset"/>
     <param name="allow_incomplete_dict_concordance" type="boolean" label="If true, then allows only a partial overlap of the BAM contigs with the new reference sequence contigs" help="ALLOW_INCOMPLETE_DICT_CONCORDANCE; By default, this tool requires a corresponding contig in the new reference for each read contig; default=False"/>
     <param name="allow_contig_length_discordance" type="boolean" label="If true, then permits mapping from a read contig to a new reference contig with the same name but a different length" help="ALLOW_CONTIG_LENGTH_DISCORDANCE; HIGHLY DANGEROUS! Only use if you know what you are doing; default=False"/>
     <expand macro="VS" />
@@ -92,6 +92,7 @@
 **Purpose**
 
 ReorderSam reorders reads in a SAM/BAM file to match the contig ordering in a provided reference file, as determined by exact name matching of contigs.  Reads mapped to contigs absent in the new reference are dropped.
+
 @dataset_collections@
 
 ----

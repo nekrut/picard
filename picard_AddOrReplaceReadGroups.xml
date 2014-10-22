@@ -1,7 +1,7 @@
-<tool name="Add or Replace Groups" id="picard_ARRG" version="1.106.0">
-  <description>Replaces all read groups</description>
+<tool name="AddOrReplaceReadGroups" id="picard_AddOrReplaceReadGroups" version="1.122.0">
+  <description>add or replaces read group information</description>
   <requirements>
-    <requirement type="package" version="1.121.0">picard</requirement>
+    <requirement type="package" version="1.122.0">picard</requirement>
   </requirements>
   
   <macros>
@@ -38,18 +38,16 @@
       QUIET=true
       VERBOSITY=ERROR
       OUTPUT="${outFile}"
-      TMP_DIR="${__new_file_path__}"
       
   </command>
   
   <inputs>
-    <param format="bam,sam" name="inputFile" type="data" label="SAM/BAM dataset to add or replace read groups in"
-      help="If empty, upload or import a SAM/BAM dataset." />
+    <param format="bam,sam" name="inputFile" type="data" label="Select SAM/BAM dataset or dataset collection" help="If empty, upload or import a SAM/BAM dataset" />
     <param name="rgid" value="A" type="text" label="Read Group ID" help="RGID; Required" />
     <param name="rgsm" value="sample-a" type="text" label="Read Group Sample name" help="RGSM; Required" />
     <param name="rglb" value="tumor-a" type="text" label="Read Group library" help="RGLB; Required" />
     <param name="rgpl" value="Illumina" type="text" label="Read Group Platform" help="RGPL; Required; e.g., Illumina, 454, IonTorrent, etc" />
-    <param name="rgpu" value="run-1" type="text" label="Read Group Platform Unit" help="RGPU; Required; e.g., run, barcode, etc." />
+    <param name="rgpu" value="run-1" type="text" label="Read Group Platform Unit" help="RGPU; Required; e.g., run, barcode, etc" />
     <!-- optional params -->
     <param name="rgcn" value="" optional="True" type="text" label="Read Group sequencing center name" help="RGCN; Optional" />
     <param name="rgds" value="" optional="True" type="text" label="Read Group description" help="RGDS; Optional" />
@@ -61,8 +59,7 @@
   </inputs>
   
   <outputs>
-    <data name="outFile" format="bam">
-    </data>
+    <data name="outFile" format="bam" label="${tool.name} on ${on_string}: BAM with replaced/modified readgroups"/>
   </outputs>
   
   <stdio>
@@ -87,6 +84,8 @@
 **Purpose**
 
 Add or Replace Read Groups in an input BAM or SAM file.
+
+@dataset_collections@
 
 @RG@
 

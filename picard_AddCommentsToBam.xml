@@ -1,6 +1,6 @@
-<tool name="AddCommentsToBam" id="picard_AddCommentsToBam" version="1.121.0">
-  <description>Adds one or more comments to the header of a BAM dataset</description>
-  <requirements><requirement type="package" version="1.121.0">picard</requirement></requirements>
+<tool name="AddCommentsToBam" id="picard_AddCommentsToBam" version="1.122.0">
+  <description>add comments to BAM dataset</description>
+  <requirements><requirement type="package" version="1.122.0">picard</requirement></requirements>
   
   <macros>
     <import>picard_macros.xml</import>
@@ -20,9 +20,9 @@
   </command>
   
   <inputs>
-    <param format="bam" name="inputFile" type="data" label="SAM/BAM dataset to add or replace read groups in" help="If empty, upload or import a SAM/BAM dataset." />
+    <param format="bam" name="inputFile" type="data" label="Select SAM/BAM dataset or dataset collection" help="If empty, upload or import a SAM/BAM dataset" />
     <repeat name="comments" title="Comment" min="1" help="You can provide multiple comments">
-          <param name="comment" type="text" size="50" label="Add this comment to BAM dataset"/>
+          <param name="comment" type="text" size="50" label="Add this comment to BAM dataset" help="COMMENT"/>
     </repeat>
 
     <expand macro="VS" />
@@ -30,7 +30,7 @@
   </inputs>
 
   <outputs>
-    <data name="outFile" format="bam" />
+    <data name="outFile" format="bam" label="${tool.name} on ${on_string}: BAM with comments"/>
   </outputs>
   
   <stdio>
@@ -51,15 +51,11 @@
 
 **Purpose**
 
-Adds one or more comments (@CO) to the header of a specified BAM dataset. 
+Adds one or more comments (@CO) to the header of a specified BAM dataset.
+
+@dataset_collections@
 
 @description@
-
-  INPUT=File
-  I=File            Input BAM file to add a comment to the header  Required. 
-
-  OUTPUT=File
-  O=File            Output BAM file to write results  Required. 
 
   COMMENT=String
   C=String          Comments to add to the BAM file  This option may be specified 0 or more times. 

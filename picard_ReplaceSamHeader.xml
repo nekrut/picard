@@ -27,8 +27,8 @@
   
   </command>
   <inputs>
-    <param format="sam,bam" name="inputFile" type="data" label="SAM/BAM dataset or dataset collection" help="INPUT; If empty, upload or import a SAM/BAM dataset" />
-    <param name="header" type="data" format="sam,bam" label="SAM/BAM dataset from which Header will be read" help="HEADER; If empty, upload or import a SAM/BAM dataset"/>
+    <param format="sam,bam" name="inputFile" type="data" label="Select SAM/BAM dataset or dataset collection (header recepient dataset)" help="If empty, upload or import a SAM/BAM dataset"/>
+    <param name="header" type="data" format="sam,bam" label="SAM/BAM dataset from which Header will be read (header source dataset)" help="HEADER; If empty, upload or import a SAM/BAM dataset"/>
   </inputs> 
   
   <outputs>

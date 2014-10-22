@@ -1,7 +1,7 @@
-<tool name="MarkDuplicatesWithMateCigar" id="picard_MarkDuplicatesWithMateCigar" version="1.121.0">
+<tool name="MarkDuplicatesWithMateCigar" id="picard_MarkDuplicatesWithMateCigar" version="1.122.0">
   <description>examine aligned records in BAM datasets to locate duplicate molecules</description>
   <requirements>
-    <requirement type="package" version="1.121.0">picard</requirement>
+    <requirement type="package" version="1.122.0">picard</requirement>
   </requirements>
   
   <macros>
@@ -41,8 +41,7 @@
   
   </command>
   <inputs>
-    <param format="bam" name="inputFile" type="data" label="SAM/BAM dataset or dataset collection" help="If empty, upload or import a SAM/BAM dataset." />
-    <repeat name="comments" title="Comment" min="0" help="You can provide multiple comments">
+    <param format="bam" name="inputFile" type="data" label="Select SAM/BAM dataset or dataset collection" help="If empty, upload or import a SAM/BAM dataset"/>
       <param name="comment" type="text" size="50" label="Add this comment to BAM dataset"/>
     </repeat>
     

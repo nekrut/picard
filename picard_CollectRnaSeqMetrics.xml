@@ -60,7 +60,7 @@
    </command>
    
    <inputs>
-      <param format="sam,bam" type="data" name="inputFile" label="Input SAM or BAM file" help="" />
+      <param format="sam,bam" type="data" name="inputFile" label="Select SAM/BAM dataset or dataset collection" help="If empty, upload or import a SAM/BAM dataset" />
       <conditional name="reference_source">
 	 <param name="reference_source_selector" type="select" label="Load reference genome from">
 	    <option value="cached">Local cache</option>
@@ -77,7 +77,7 @@
 	 </when>
       </conditional>        
       <param format="tabular" name="refFlat" type="data" label="Gene annotations in refFlat form" help="See &quot;Obtaining gene annotations in refFlat format&quot; below for help" />
-      <param name="ribosomal_intervals" format="picard_interval_list" type="data" optional="True" label="Location of rRNA sequences in genome, in interval_list format" help="RIBOSOMAL_INTERVALS; If not specified no bases will be identified as being ribosomal."/>
+      <param name="ribosomal_intervals" format="picard_interval_list" type="data" optional="True" label="Location of rRNA sequences in genome, in interval_list format" help="RIBOSOMAL_INTERVALS; If not specified no bases will be identified as being ribosomal. The list of intervals can be geberated from BED or Interval datasets using Galaxy BedToIntervalList tool"/>
       <param name="strand_specificity" type="select" label="What is the RNA-seq library strand specificity" help="STRAND_SPECIFICITY; For unpaired reads, use FIRST_READ_TRANSCRIPTION_STRAND if the reads are expected to be on the transcription strand.">
 	 <option value="NONE" select="True">None</option>
 	 <option value="FIRST_READ_TRANSCRIPTION_STRAND">First read transcription strand</option>
@@ -130,20 +130,22 @@
 
 Collects metrics about the alignment of RNA to various functional classes of loci in the genome: coding, intronic, UTR, intergenic, ribosomal.
 
+@dataset_collections@
+
 -----
 
 .. class:: warningmark
 
 **Obtaining gene annotations in refFlat format**
 
-This requires gene annotations in refFlat_ format. These data can be obtained from UCSC table browser directly through Galaxy by following these steps:
+This tool requires gene annotations in refFlat_ format. These data can be obtained from UCSC table browser directly through Galaxy by following these steps:
 
-   1. Click on **Get Data** in the upper part of left pane of Galaxy interface.
+   1. Click on **Get Data** in the upper part of left pane of Galaxy interface
    2. Click on **UCSC Main** link
-   3. Set your genome and dataset of interest. It **must** be the same genome build against you mapped the reads contained in the BAM file you analyze.
+   3. Set your genome and dataset of interest. It **must** be the same genome build against which you have mapped the reads contained in the BAM file you are analyzing
    4. In the **output format** field choose **selected fields from primary and related tables**
-   5. Click **get output** button.
-   6. In the first table presented at the top of the page select (using checboxes) first 11 fields:
+   5. Click **get output** button
+   6. In the first table presented at the top of the page select (using checkboxes) first 11 fields:
       name
       chrom
       strand
@@ -155,14 +157,12 @@ This requires gene annotations in refFlat_ format. These data can be obtained fr
       exonStarts
       exonEnds
       proteinId
-   7. Click **done with selection**.
+   7. Click **done with selection**
    8. Click **Send query to Galaxy**
-   9. A new dataset will appear in the history.
-   10. Use this dataset as the input for **Gene annotations in refFlat form** dropdown of this tool.
+   9. A new dataset will appear in the current Galaxy history
+   10. Use this dataset as the input for **Gene annotations in refFlat form** dropdown of this tool
    
-
 .. _refFlat: http://genome.ucsc.edu/goldenPath/gbdDescriptionsOld.html#RefFlat
-
 
 @description@
 
@@ -170,8 +170,9 @@ This requires gene annotations in refFlat_ format. These data can be obtained fr
                                  http://genome.ucsc.edu/goldenPath/gbdDescriptionsOld.html#RefFlat  Required. 
 
    RIBOSOMAL_INTERVALS=File      Location of rRNA sequences in genome, in interval_list format.  If not specified no bases 
-                                 will be identified as being ribosomal.  Format described here: 
-                                 http://picard.sourceforge.net/javadoc/net/sf/picard/util/IntervalList.html  
+                                 will be identified as being ribosomal. Format described here: 
+                                 http://picard.sourceforge.net/javadoc/net/sf/picard/util/IntervalList.html  and can be
+				 generated from BED datasetes using Galaxy's wrapper for picard_BedToIntervalList tool
 
    STRAND_SPECIFICITY=StrandSpecificity
    STRAND=StrandSpecificity      For strand-specific library prep. For unpaired reads, use FIRST_READ_TRANSCRIPTION_STRAND 

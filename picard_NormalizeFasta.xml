@@ -28,7 +28,7 @@
   
   </command>
   <inputs>
-    <param format="fasta" name="inputFile" type="data" label="FASTA dataset or dataset collection" help="If empty, upload or import a FASTA dataset." />
+    <param format="fasta" name="inputFile" type="data" label="FASTA dataset or dataset collection" help="If empty, upload or import a FASTA dataset" />
     <param name="line_length" type="integer" value="100" min="1" max="200" label="The line length to be used for the output fasta file" help="LINE_LENGTH; default=100"/>
     <param name="truncate_sequence_names_at_whitespaces" type="boolean" label="Truncate sequence names at first whitespace" help="TRUNCATE_SEQUENCE_NAMES_AT_WHITESPACE; default=False"/>
   </inputs> 
