@@ -1,7 +1,7 @@
 <tool name="CollectWgsMetrics" id="picard_CollectWgsMetrics" version="1.121.0">
   <description>compute metrics for evaluating of whole genome sequencing experiments</description>
   <requirements>
-    <requirement type="package" version="1.121.0">picard</requirement>
+    <requirement type="package" version="1.122.0">picard</requirement>
   </requirements>
   
   <macros>
