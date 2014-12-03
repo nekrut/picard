@@ -1,7 +1,7 @@
-<tool name="FastqToSam" id="picard_FastqToSam" version="1.122.0">
+<tool name="FastqToSam" id="picard_FastqToSam" version="1.126.0">
   <description>convert Fastq data into unaligned BAM</description>
   <requirements>
-    <requirement type="package" version="1.122.0">picard</requirement>
+    <requirement type="package" version="1.126.0">picard</requirement>
   </requirements>
   
   <macros>
@@ -11,7 +11,8 @@
   <command>
     @java_options@
     
-    java -jar \$JAVA_JAR_PATH/FastqToSam.jar
+    java -jar \$JAVA_JAR_PATH/picard.jar
+    FastqToSam
     
     #if str( $input_type.input_type_selector ) == "se":
       FASTQ="${input_type.fastq}"

@@ -1,7 +1,7 @@
-<tool name="EstimateLibraryComplexity" id="picard_EstimateLibraryComplexity" version="1.122.0">
+<tool name="EstimateLibraryComplexity" id="picard_EstimateLibraryComplexity" version="1.126.0">
   <description>assess sequence library complexity from read sequences</description>
   <requirements>
-    <requirement type="package" version="1.122.0">picard</requirement>
+    <requirement type="package" version="1.126.0">picard</requirement>
   </requirements>
   
   <macros>
@@ -11,7 +11,8 @@
   <command>
     @java_options@
     
-    java -jar \$JAVA_JAR_PATH/EstimateLibraryComplexity.jar
+    java -jar \$JAVA_JAR_PATH/picard.jar
+    EstimateLibraryComplexity
     
     INPUT="${inputFile}"
     OUTPUT="${outFile}"

@@ -1,7 +1,7 @@
-<tool name="MeanQualityByCycle" id="picard_MeanQualityByCycle" version="1.122.0">
+<tool name="MeanQualityByCycle" id="picard_MeanQualityByCycle" version="1.126.0">
   <description>chart distribution of base qualities</description>
   <requirements>
-    <requirement type="package" version="1.122.0">picard</requirement>
+    <requirement type="package" version="1.126.0">picard</requirement>
   </requirements>
   
   <macros>
@@ -20,7 +20,8 @@
         #set $reference_fasta_filename = str( $reference_source.ref_file.fields.path )
     #end if
     
-    java -jar \$JAVA_JAR_PATH/MeanQualityByCycle.jar
+    java -jar \$JAVA_JAR_PATH/picard.jar
+    MeanQualityByCycle
     INPUT="${inputFile}"
     OUTPUT="${outFile}"
     CHART_OUTPUT="${pdfFile}"

@@ -1,6 +1,6 @@
-<tool name="MergeBamAlignment" id="picard_MergeBamAlignment" version="1.122.0">
+<tool name="MergeBamAlignment" id="picard_MergeBamAlignment" version="1.126.0">
   <description>merge alignment data with additional info stored in an unmapped BAM dataset</description>
-  <requirements><requirement type="package" version="1.122.0">picard</requirement></requirements>
+  <requirements><requirement type="package" version="1.126.0">picard</requirement></requirements>
   
   <macros>
     <import>picard_macros.xml</import>
@@ -15,7 +15,7 @@
        
     #if str( $reference_source.reference_source_selector ) == "history":
         
-      java -jar \$JAVA_JAR_PATH/CreateSequenceDictionary.jar REFERENCE="${ref_fasta}" OUTPUT="${picard_dict}"
+      java -jar \$JAVA_JAR_PATH/picard.jar CreateSequenceDictionary REFERENCE="${ref_fasta}" OUTPUT="${picard_dict}"
       QUIET=true
       VERBOSITY=ERROR
       
@@ -27,7 +27,8 @@
     
     #end if
     
-    java -jar \$JAVA_JAR_PATH/MergeBamAlignment.jar
+    java -jar \$JAVA_JAR_PATH/picard.jar
+    MergeBamAlignment
       UNMAPPED_BAM="${unmapped_bam}"
       
       PAIRED_RUN=true ##This argument is ignored and will be removed. Required. Possible values: {true, false}

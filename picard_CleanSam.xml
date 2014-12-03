@@ -1,9 +1,9 @@
-<tool id="picard_CleanSam" name="CleanSam" version="1.122.0">
+<tool id="picard_CleanSam" name="CleanSam" version="1.126.0">
     
   <description>perform SAM/BAM grooming</description>
   
   <requirements>
-    <requirement type="package" version="1.122.0">picard</requirement>
+    <requirement type="package" version="1.126.0">picard</requirement>
   </requirements>
   
   <macros>
@@ -12,7 +12,8 @@
   
   <command>
     @java_options@
-    java -jar \$JAVA_JAR_PATH/CleanSam.jar
+    java -jar \$JAVA_JAR_PATH/picard.jar
+    CleanSam
     INPUT="${inputFile}"
     OUTPUT="${outFile}"
     QUIET=true

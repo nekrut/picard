@@ -1,7 +1,7 @@
-<tool name="QualityScoreDistribution" id="picard_QualityScoreDistribution" version="1.122.0">
+<tool name="QualityScoreDistribution" id="picard_QualityScoreDistribution" version="1.126.0">
   <description>chart quality score distribution</description>
   <requirements>
-    <requirement type="package" version="1.122.0">picard</requirement>
+    <requirement type="package" version="1.126.0">picard</requirement>
   </requirements>
   
   <macros>
@@ -20,7 +20,8 @@
         #set $reference_fasta_filename = str( $reference_source.ref_file.fields.path )
     #end if
     
-    java -jar \$JAVA_JAR_PATH/QualityScoreDistribution.jar
+    java -jar \$JAVA_JAR_PATH/picard.jar
+    QualityScoreDistribution
     INPUT="${inputFile}"
     OUTPUT="${outFile}"
     CHART_OUTPUT="${pdfFile}"

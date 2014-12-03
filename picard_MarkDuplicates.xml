@@ -1,7 +1,7 @@
-<tool name="MarkDuplicates" id="picard_MarkDuplicates" version="1.122.0">
+<tool name="MarkDuplicates" id="picard_MarkDuplicates" version="1.126.0">
   <description>examine aligned records in BAM datasets to locate duplicate molecules</description>
   <requirements>
-    <requirement type="package" version="1.122.0">picard</requirement>
+    <requirement type="package" version="1.126.0">picard</requirement>
   </requirements>
   
   <macros>
@@ -11,7 +11,8 @@
   <command>
     @java_options@
     
-    java -jar \$JAVA_JAR_PATH/MarkDuplicates.jar
+    java -jar \$JAVA_JAR_PATH/picard.jar
+    MarkDuplicates
     
     INPUT="${inputFile}"
     OUTPUT="${outFile}"

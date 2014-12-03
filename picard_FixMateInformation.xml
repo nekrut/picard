@@ -1,7 +1,7 @@
-<tool name="FixMateInformation" id="picard_FixMateInformation" version="1.122.0">
+<tool name="FixMateInformation" id="picard_FixMateInformation" version="1.126.0">
   <description>ensure that all mate-pair information is in sync between each read and it's mate pair</description>
   <requirements>
-    <requirement type="package" version="1.122.0">picard</requirement>
+    <requirement type="package" version="1.126.0">picard</requirement>
   </requirements>
   
   <macros>
@@ -11,7 +11,8 @@
   <command>
     @java_options@
     
-    java -jar \$JAVA_JAR_PATH/FixMateInformation.jar 
+    java -jar \$JAVA_JAR_PATH/picard.jar
+    FixMateInformation
     INPUT="${inputFile}"
     OUTPUT="${outFile}"
     ASSUME_SORTED=${assume_sorted}

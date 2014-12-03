@@ -1,7 +1,7 @@
-<tool name="CollectGcBiasMetrics" id="picard_CollectGcBiasMetrics" version="1.122.0">
+<tool name="CollectGcBiasMetrics" id="picard_CollectGcBiasMetrics" version="1.126.0">
   <description>charts the GC bias metrics</description>
   <requirements>
-    <requirement type="package" version="1.122.0">picard</requirement>
+    <requirement type="package" version="1.126.0">picard</requirement>
   </requirements>
   
   <macros>
@@ -20,7 +20,8 @@
         #set $reference_fasta_filename = str( $reference_source.ref_file.fields.path )
     #end if
     
-    java -jar \$JAVA_JAR_PATH/CollectGcBiasMetrics.jar
+    java -jar \$JAVA_JAR_PATH/picard.jar
+    CollectGcBiasMetrics
     INPUT="${inputFile}"
     OUTPUT="${outFile}"
     CHART_OUTPUT="${pdfFile}"

@@ -28,7 +28,8 @@
     
     @java_options@
     
-    java -jar \$JAVA_JAR_PATH/ValidateSamFile.jar
+    java -jar \$JAVA_JAR_PATH/picard.jar
+    ValidateSamFile
     
     INPUT="${inputFile}"
     OUTPUT="${outFile}"

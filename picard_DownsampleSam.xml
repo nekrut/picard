@@ -1,7 +1,7 @@
-<tool name="Downsample SAM/BAM" id="picard_DownsampleSam" version="1.122.0">
+<tool name="Downsample SAM/BAM" id="picard_DownsampleSam" version="1.126.0">
   <description>Downsample a file to retain a subset of the reads</description>
   <requirements>
-    <requirement type="package" version="1.122.0">picard</requirement>
+    <requirement type="package" version="1.126.0">picard</requirement>
   </requirements>
    
   <macros>
@@ -11,7 +11,8 @@
   <command>
     @java_options@
     java -jar
-    \$JAVA_JAR_PATH/DownsampleSam.jar
+    \$JAVA_JAR_PATH/picard.jar
+    DownsampleSam
       INPUT="${inputFile}"
       OUTPUT="${outFile}"
       PROBABILITY=${probability}

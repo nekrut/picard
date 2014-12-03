@@ -1,7 +1,7 @@
-<tool name="Collect Alignment Summary Metrics" id="picard_CASM" version="1.122.0">
+<tool name="Collect Alignment Summary Metrics" id="picard_CASM" version="1.126.0">
   <description>writes a file containing summary alignment metrics</description>
   <requirements>
-    <requirement type="package" version="1.122.0">picard</requirement>
+    <requirement type="package" version="1.126.0">picard</requirement>
   </requirements>
   
   <macros>
@@ -20,7 +20,8 @@
         #set $reference_fasta_filename = str( $reference_source.ref_file.fields.path )
     #end if
     
-    java -jar \$JAVA_JAR_PATH/CollectAlignmentSummaryMetrics.jar
+    java -jar \$JAVA_JAR_PATH/picard.jar
+    CollectAlignmentSummaryMetrics
     INPUT="${inputFile}"
     OUTPUT="${outFile}"
     MAX_INSERT_SIZE=${maxinsert}
