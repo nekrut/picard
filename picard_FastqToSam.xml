@@ -87,7 +87,7 @@
         <param name="fastq2" type="data" format="fastq" label="Input fastq file for the second read of paired end data" help="FASTQ2"/>
       </when>
       <when value="pc">
-        <param name="fastq" type="data_collection" collection_type="paired" label="FASTQ paired dataset collection" help="FASTQ and FASTQ2; A collection of two datasets with forward and reverse reads. See help below on explanation of dataset collections"/>
+        <param name="fastq" type="data_collection" format="fastq" collection_type="paired" label="FASTQ paired dataset collection" help="FASTQ and FASTQ2; A collection of two datasets with forward and reverse reads. See help below on explanation of dataset collections"/>
       </when>
     </conditional>
       
